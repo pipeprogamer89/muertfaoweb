@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Top 10 Jugadores | MuertFao Phoenix Uprising</title>
+    
+    <!-- Meta tags -->
+    <meta name="description" content="Ranking oficial de los mejores jugadores de MuertFao Phoenix Uprising. Descubre quiénes dominan el servidor.">
+    <meta property="og:title" content="Top 10 Jugadores - MuertFao Phoenix Uprising">
+    <meta property="og:description" content="Los 10 mejores jugadores del servidor de Minecraft más extremo">
+    <meta property="og:image" content="https://i.ibb.co/pv8jn6MD/image.png">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    
+    <!-- AOS Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/top-players.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="https://i.ibb.co/pv8jn6MD/image.png">
+</head>
+<body>
+    <!-- Preloader -->
+    <div class="preloader">
+        <div class="trophy-loader">
+            <div class="trophy-cup">
+                <div class="cup"></div>
+                <div class="base"></div>
+            </div>
+            <p>Cargando ranking de élite...</p>
+        </div>
+    </div>
+    
+    <!-- Particle Background -->
+    <div id="particles-js"></div>
+    
+    <!-- Navigation -->
+    <nav class="main-nav">
+        <div class="nav-container">
+            <div class="logo-nav">
+                <a href="index.html" class="back-home">
+                    <i class="fas fa-arrow-left"></i>
+                    <img src="https://i.ibb.co/pv8jn6MD/image.png" alt="Logo" class="logo-nav-img">
+                    <span class="logo-text">TOP 10 JUGADORES</span>
+                </a>
+            </div>
+            <div class="nav-links">
+                <a href="#ranking" class="nav-link active"><i class="fas fa-trophy"></i> RANKING</a>
+                <a href="#stats" class="nav-link"><i class="fas fa-chart-bar"></i> ESTADÍSTICAS</a>
+                <a href="#categories" class="nav-link"><i class="fas fa-star"></i> CATEGORÍAS</a>
+                <a href="#history" class="nav-link"><i class="fas fa-history"></i> HISTORIAL</a>
+            </div>
+            <div class="last-updated">
+                <i class="fas fa-sync-alt"></i>
+                <span>Actualizado hoy</span>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Hero Section -->
+    <header class="ranking-hero">
+        <div class="hero-overlay"></div>
+        <canvas id="leaderboardCanvas"></canvas>
+        
+        <div class="hero-content">
+            <div class="hero-text" data-aos="fade-up">
+                <h1 class="glitch" data-text="HALL OF FAME">
+                    <span>HALL</span> OF <span class="accent">FAME</span>
+                </h1>
+                <p class="subtitle">Los 10 jugadores más poderosos del servidor</p>
+                
+                <!-- Ranking Stats -->
+                <div class="ranking-stats">
+                    <div class="stat-badge">
+                        <div class="stat-icon"><i class="fas fa-users"></i></div>
+                        <div class="stat-info">
+                            <div class="stat-value">15+</div>
+                            <div class="stat-label">JUGADORES EN RANKING</div>
+                        </div>
+                    </div>
+                    <div class="stat-badge">
+                        <div class="stat-icon"><i class="fas fa-calendar-alt"></i></div>
+                        <div class="stat-info">
+                            <div class="stat-value">S1</div>
+                            <div class="stat-label">TEMPORADA ACTUAL</div>
+                        </div>
+                    </div>
+                    <div class="stat-badge">
+                        <div class="stat-icon"><i class="fas fa-gem"></i></div>
+                        <div class="stat-info">
+                            <div class="stat-value">TOP 10</div>
+                            <div class="stat-label">ÉLITE DEL SERVIDOR</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Crown Animation -->
+            <div class="crown-container">
+                <div class="crown">
+                    <i class="fas fa-crown"></i>
+                </div>
+                <div class="crown-light"></div>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Main Ranking -->
+    <main id="ranking" class="ranking-container">
+        <!-- Top 3 Podium -->
+        <section class="podium-section" data-aos="fade-up">
+            <h2 class="section-title">PODIO DE <span class="accent">LEYENDAS</span></h2>
+            <p class="section-subtitle">Los tres mejores jugadores que dominan el servidor</p>
+            
+            <div class="podium">
+                <!-- 2nd Place -->
+                <div class="podium-place second" data-aos="flip-left" data-aos-delay="200">
+                    <div class="podium-number">2</div>
+                    <div class="podium-player">
+                        <div class="player-avatar">
+                            <img src="https://mc-heads.net/avatar/Brastin/150" alt="Brastin" class="player-skin">
+                            <div class="avatar-glow silver"></div>
+                        </div>
+                        <h3 class="player-name">Brastin</h3>
+                        <div class="player-rank silver">PLATA</div>
+                        <div class="player-score">
+                            <i class="fas fa-star"></i>
+                            <span>4,850 PTS</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 1st Place -->
+                <div class="podium-place first" data-aos="flip-up" data-aos-delay="100">
+                    <div class="podium-number">1</div>
+                    <div class="podium-player">
+                        <div class="player-avatar">
+                            <img src="https://mc-heads.net/avatar/itzrealme/180" alt="itzrealme" class="player-skin">
+                            <div class="avatar-glow gold"></div>
+                            <div class="crown-effect">
+                                <i class="fas fa-crown"></i>
+                            </div>
+                        </div>
+                        <h3 class="player-name">itzrealme</h3>
+                        <div class="player-rank gold">ORO</div>
+                        <div class="player-score">
+                            <i class="fas fa-trophy"></i>
+                            <span>5,250 PTS</span>
+                        </div>
+                        <div class="player-tag">#1 LEGENDARIO</div>
+                    </div>
+                </div>
+                
+                <!-- 3rd Place -->
+                <div class="podium-place third" data-aos="flip-right" data-aos-delay="300">
+                    <div class="podium-number">3</div>
+                    <div class="podium-player">
+                        <div class="player-avatar">
+                            <img src="https://mc-heads.net/avatar/Jahir/150" alt="Jahir" class="player-skin">
+                            <div class="avatar-glow bronze"></div>
+                        </div>
+                        <h3 class="player-name">Jahir</h3>
+                        <div class="player-rank bronze">BRONCE</div>
+                        <div class="player-score">
+                            <i class="fas fa-medal"></i>
+                            <span>4,650 PTS</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Full Top 10 List -->
+        <section class="top10-section" data-aos="fade-up">
+            <div class="section-header">
+                <h2 class="section-title">TOP 10 <span class="accent">COMPLETO</span></h2>
+                <div class="ranking-controls">
+                    <button class="filter-btn active" data-filter="all">Todos</button>
+                    <button class="filter-btn" data-filter="online">En línea</button>
+                    <button class="filter-btn" data-filter="pvp">PvP Masters</button>
+                    <button class="filter-btn" data-filter="builders">Builders</button>
+                </div>
+            </div>
+            
+            <div class="top10-list">
+                <!-- Player Card Template -->
+                <!-- We'll generate these with JavaScript -->
+            </div>
+        </section>
+        
+        <!-- Player Stats -->
+        <section id="stats" class="stats-section">
+            <h2 class="section-title" data-aos="fade-up">ESTADÍSTICAS <span class="accent">DETALLADAS</span></h2>
+            <p class="section-subtitle">Análisis profundo del rendimiento de los mejores jugadores</p>
+            
+            <div class="stats-grid" data-aos="zoom-in">
+                <!-- Stats will be populated by JavaScript -->
+            </div>
+            
+            <!-- Progress Bars -->
+            <div class="progress-section" data-aos="fade-up">
+                <h3>PROGRESIÓN MENSUAL</h3>
+                <div class="progress-bars">
+                    <!-- Progress bars will be populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+        
+        <!-- Categories -->
+        <section id="categories" class="categories-section">
+            <h2 class="section-title" data-aos="fade-up">MEJORES POR <span class="accent">CATEGORÍA</span></h2>
+            
+            <div class="categories-grid">
+                <div class="category-card" data-aos="flip-left">
+                    <div class="category-icon">
+                        <i class="fas fa-fist-raised"></i>
+                    </div>
+                    <h3>PvP</h3>
+                    <div class="category-leader">
+                        <img src="https://mc-heads.net/avatar/itzrealme/80" alt="Leader">
+                        <div class="leader-info">
+                            <div class="leader-name">itzrealme</div>
+                            <div class="leader-stats">98 kills</div>
+                        </div>
+                    </div>
+                    <div class="category-players">
+                        <span>2. Brastin</span>
+                        <span>3. Justicia000</span>
+                    </div>
+                </div>
+                
+                <div class="category-card" data-aos="flip-left" data-aos-delay="100">
+                    <div class="category-icon">
+                        <i class="fas fa-hammer"></i>
+                    </div>
+                    <h3>Construcción</h3>
+                    <div class="category-leader">
+                        <img src="https://mc-heads.net/avatar/EpicSans/80" alt="Leader">
+                        <div class="leader-info">
+                            <div class="leader-name">EpicSans</div>
+                            <div class="leader-stats">5 builds</div>
+                        </div>
+                    </div>
+                    <div class="category-players">
+                        <span>2. julian_osorio28</span>
+                        <span>3. Jahir</span>
+                    </div>
+                </div>
+                
+                <div class="category-card" data-aos="flip-left" data-aos-delay="200">
+                    <div class="category-icon">
+                        <i class="fas fa-dungeon"></i>
+                    </div>
+                    <h3>Dungeons</h3>
+                    <div class="category-leader">
+                        <img src="https://mc-heads.net/avatar/RODMASTER247/80" alt="Leader">
+                        <div class="leader-info">
+                            <div class="leader-name">RODMASTER247</div>
+                            <div class="leader-stats">12 completadas</div>
+                        </div>
+                    </div>
+                    <div class="category-players">
+                        <span>2. Elbellako</span>
+                        <span>3. Brastin</span>
+                    </div>
+                </div>
+                
+                <div class="category-card" data-aos="flip-left" data-aos-delay="300">
+                    <div class="category-icon">
+                        <i class="fas fa-coins"></i>
+                    </div>
+                    <h3>Economía</h3>
+                    <div class="category-leader">
+                        <img src="https://mc-heads.net/avatar/Justicia000/80" alt="Leader">
+                        <div class="leader-info">
+                            <div class="leader-name">Justicia000</div>
+                            <div class="leader-stats">$180K</div>
+                        </div>
+                    </div>
+                    <div class="category-players">
+                        <span>2. itzrealme</span>
+                        <span>3. EpicSans</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Ranking History -->
+        <section id="history" class="history-section">
+            <h2 class="section-title" data-aos="fade-up">HISTORIAL DE <span class="accent">RANKING</span></h2>
+            
+            <div class="history-timeline" data-aos="zoom-in">
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-date">Esta Semana</div>
+                        <div class="timeline-content">
+                            <h4>itzrealme recupera el #1</h4>
+                            <p>Tras una increíble racha de 15 victorias consecutivas en PvP</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">Hace 2 semanas</div>
+                        <div class="timeline-content">
+                            <h4>Brastin llega al top 2</h4>
+                            <p>Demostrando ser una bestia en un PVP versus itzrealme/p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">Hace 1 mes</div>
+                        <div class="timeline-content">
+                            <h4>Nuevo ingreso al top 10</h4>
+                            <p>Elbellako entra por primera vez al ranking de élite</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="history-chart">
+                <canvas id="rankingChart"></canvas>
+            </div>
+        </section>
+        
+        <!-- Live Rankings -->
+        <section class="live-section">
+            <div class="live-header">
+                <h2 class="section-title"><i class="fas fa-broadcast-tower"></i> RANKING <span class="accent">EN VIVO</span></h2>
+                <div class="live-indicator">
+                    <span class="live-dot"></span>
+                    EN VIVO
+                </div>
+            </div>
+            
+            <div class="live-updates">
+                <div class="update-card">
+                    <div class="update-icon"><i class="fas fa-arrow-up"></i></div>
+                    <div class="update-content">
+                        <span class="update-player">RODMASTER247</span>
+                        <span class="update-text">subió al puesto #7 (+2)</span>
+                        <span class="update-time">Hace 5 min</span>
+                    </div>
+                </div>
+                <div class="update-card">
+                    <div class="update-icon"><i class="fas fa-trophy"></i></div>
+                    <div class="update-content">
+                        <span class="update-player">itzrealme</span>
+                        <span class="update-text">alcanzó nuevo récord: 5,250 puntos</span>
+                        <span class="update-time">Hace 15 min</span>
+                    </div>
+                </div>
+                <div class="update-card">
+                    <div class="update-icon"><i class="fas fa-users"></i></div>
+                    <div class="update-content">
+                        <span class="update-text">3 nuevos jugadores cerca del top 10</span>
+                        <span class="update-time">Hace 30 min</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="ranking-footer">
+        <div class="footer-content">
+            <div class="footer-info">
+                <img src="https://i.ibb.co/pv8jn6MD/image.png" alt="Logo" class="footer-logo">
+                <div class="footer-text">
+                    <h3>RANKING OFICIAL</h3>
+                    <p>Temporada 1 - MuertFao Phoenix Uprising</p>
+                    <p class="footer-note">Actualizado automáticamente cada 24 horas</p>
+                </div>
+            </div>
+            
+            <div class="footer-actions">
+                <button class="refresh-btn" id="refreshRanking">
+                    <i class="fas fa-sync-alt"></i> ACTUALIZAR RANKING
+                </button>
+                <a href="index.html" class="server-btn">
+                    <i class="fas fa-server"></i> IR AL SERVIDOR
+                </a>
+            </div>
+            
+            <div class="footer-disclaimer">
+                <p><i class="fas fa-info-circle"></i> Las estadísticas se basan en la actividad real del servidor</p>
+                <p class="copyright">© 2025 MuertFao Phoenix Uprising - Ranking System v2.0</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Player Modal -->
+    <div class="player-modal" id="playerModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-body">
+                <!-- Player details will be loaded here -->
+            </div>
+        </div>
+    </div>
+    
+    <!-- Libraries -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- Main Script -->
+    <script src="js/top-players.js"></script>
+</body>
+</html>
