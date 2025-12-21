@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MuertFao Phoenix Uprising | Survival Extremo</title>
+    
+    <!-- Meta tags para SEO y redes sociales -->
+    <meta name="description" content="Servidor de Minecraft extremo con mecánicas únicas, dimensiones secretas y una comunidad unida. ¡Únete a la experiencia Phoenix Uprising!">
+    <meta property="og:title" content="MuertFao Phoenix Uprising">
+    <meta property="og:description" content="Servidor de Minecraft extremo con mecánicas únicas y comunidad activa">
+    <meta property="og:image" content="https://i.ibb.co/pv8jn6MD/image.png">
+    <meta name="twitter:card" content="summary_large_image">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    
+    <!-- AOS Library (Animaciones) -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Glitch effect library -->
+    <link rel="stylesheet" href="https://unpkg.com/css-glitch-effect@1.0.0/dist/glitch.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="image.ico">
+</head>
+<body>
+    <!-- Preloader -->
+    <div class="preloader">
+        <div class="phoenix-loader">
+            <div class="flame"></div>
+            <div class="flame"></div>
+            <div class="flame"></div>
+            <p>Cargando el renacer...</p>
+        </div>
+    </div>
+    
+    <!-- Particle Background -->
+    <div id="particles-js"></div>
+    
+    <!-- Navigation -->
+    <nav class="main-nav">
+        <div class="nav-container">
+            <div class="logo-nav">
+                <img src="https://i.ibb.co/pv8jn6MD/image.png" alt="Logo" class="logo-hologram">
+                <span class="logo-text">PHOENIX UPRISING</span>
+            </div>
+            <div class="nav-links">
+                <a href="#home" class="nav-link active"><i class="fas fa-fire"></i> INICIO</a>
+                <a href="#features" class="nav-link"><i class="fas fa-star"></i> CARACTERÍSTICAS</a>
+                <a href="#staff" class="nav-link"><i class="fas fa-users"></i> STAFF</a>
+                <a href="#gallery" class="nav-link"><i class="fas fa-images"></i> GALERÍA</a>
+                <a href="#discord" class="nav-link"><i class="fab fa-discord"></i> DISCORD</a>
+                <a href="#stats" class="nav-link"><i class="fas fa-chart-line"></i> ESTADÍSTICAS</a>
+            </div>
+            <button class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+    
+    <!-- Hero Section -->
+    <header id="home">
+        <!-- Animated Phoenix Canvas -->
+        <canvas id="phoenixCanvas"></canvas>
+        
+        <div class="hero-content" data-aos="fade-up" data-aos-duration="1500">
+            <div class="logo-container">
+                <div class="holographic-logo">
+                    <img src="https://i.ibb.co/pv8jn6MD/image.png" alt="MuertFao Phoenix Uprising Logo" class="logo-3d">
+                    <div class="hologram-effect"></div>
+                </div>
+            </div>
+            
+            <div class="hero-text">
+                <h1 class="glitch" data-text="¡NO AL ABURRIMIENTO EN LAS CENIZAS!">
+                    ¡NO AL ABURRIMIENTO EN LAS CENIZAS!
+                </h1>
+                <p class="subtitle typing-effect">Mecánicas únicas • Dimensiones secretas • Comunidad unida • Eventos épicos • PvP intenso</p>
+                
+                <!-- Server Status -->
+                <div class="server-status" data-aos="zoom-in">
+                    <div class="status-indicator">
+                        <span class="status-dot online"></span>
+                        <span>SERVER ONLINE</span>
+                        <span class="player-count">30 jugadores activos</span>
+                    </div>
+                </div>
+                
+                <!-- IP Cards -->
+                <div class="ip-section">
+                    <div class="ip-card holographic-card" data-aos="flip-left">
+                        <div class="card-header">
+                            <i class="fab fa-java"></i>
+                            <h3>Java Edition 1.21.10+</h3>
+                        </div>
+                        <div class="ip-address glitch-ip">dr01.dragonhosting.lat:19853</div>
+                        <button class="copy-btn pulse-btn" data-ip="dr01.dragonhosting.lat:19853">
+                            <i class="fas fa-copy"></i> COPIAR IP
+                        </button>
+                        <div class="players-online">
+                            <i class="fas fa-user"></i> 15 jugadores online
+                        </div>
+                    </div>
+                    
+                    <div class="ip-card holographic-card" data-aos="flip-right">
+                        <div class="card-header">
+                            <i class="fas fa-mobile-alt"></i>
+                            <h3>Bedrock Edition</h3>
+                        </div>
+                        <div class="ip-address">
+                            dr01.dragonhosting.lat
+                            <br>
+                            <span class="port">Puerto: 19853</span>
+                        </div>
+                        <button class="copy-btn pulse-btn" data-ip="dr01.dragonhosting.lat:19853">
+                            <i class="fas fa-copy"></i> COPIAR IP
+                        </button>
+                        <div class="players-online">
+                            <i class="fas fa-user"></i> 15 jugadores online
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Quick Actions -->
+                <div class="quick-actions">
+                    <a href="https://discord.gg/uuAysGU3SE" target="_blank" class="action-btn discord-btn">
+                        <i class="fab fa-discord"></i> UNIRSE AL DISCORD
+                    </a>
+                    <a href="#features" class="action-btn explore-btn">
+                        <i class="fas fa-compass"></i> EXPLORAR SERVIDOR
+                    </a>
+                    <button class="action-btn trailer-btn" id="trailerBtn">
+                        <i class="fas fa-play"></i> VER TRAILER
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Scroll Indicator -->
+        <div class="scroll-indicator">
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </header>
+    
+    <!-- Features Section -->
+    <section id="features" class="section">
+        <div class="section-header" data-aos="fade-up">
+            <h2 class="section-title glitch" data-text="CARACTERÍSTICAS ÉPICAS">
+                <span>CARACTERÍSTICAS</span> ÉPICAS
+            </h2>
+            <p class="section-subtitle">Descubre lo que hace único a nuestro servidor</p>
+        </div>
+        
+        <div class="features-grid">
+            <div class="feature-card" data-aos="zoom-in">
+                <div class="feature-icon">
+                    <i class="fas fa-dungeon"></i>
+                </div>
+                <h3>Dungeons Personalizadas</h3>
+                <p>Explora mazmorras con jefes únicos y recompensas legendarias. Cada dungeon es una experiencia diferente.</p>
+                <div class="feature-badge">NUEVO</div>
+            </div>
+            
+            <div class="feature-card" data-aos="zoom-in" data-aos-delay="100">
+                <div class="feature-icon">
+                    <i class="fas fa-layer-group"></i>
+                </div>
+                <h3>Dimensiones Secretas</h3>
+                <p>Accede a dimensiones ocultas con recursos exclusivos y criaturas mitológicas. ¿Encontrarás todas?</p>
+            </div>
+            
+            <div class="feature-card" data-aos="zoom-in" data-aos-delay="200">
+                <div class="feature-icon">
+                    <i class="fas fa-trophy"></i>
+                </div>
+                <h3>Sistema de Clasificación</h3>
+                <p>Compite por el top del ranking global. Gana puntos en PvP, construcción y eventos especiales.</p>
+            </div>
+            
+            <div class="feature-card" data-aos="zoom-in" data-aos-delay="300">
+                <div class="feature-icon">
+                    <i class="fas fa-calendar-star"></i>
+                </div>
+                <h3>Eventos Semanales</h3>
+                <p>Participa en torneos PvP, construcciones masivas, cacerías de bosses y mucho más cada semana.</p>
+            </div>
+            
+            <div class="feature-card" data-aos="zoom-in" data-aos-delay="400">
+                <div class="feature-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3>Protección Anticheat</h3>
+                <p>Sistema avanzado de detección de hacks. Juega en un entorno limpio y competitivo.</p>
+            </div>
+            
+            <div class="feature-card" data-aos="zoom-in" data-aos-delay="500">
+                <div class="feature-icon">
+                    <i class="fas fa-rocket"></i>
+                </div>
+                <h3>Actualizaciones Constantes</h3>
+                <p>Nuevo contenido cada mes. El servidor nunca se estanca y siempre hay algo por descubrir.</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Stats Section -->
+    <section id="stats" class="stats-section">
+        <div class="stats-overlay"></div>
+        <div class="stats-container">
+            <div class="stat-item" data-aos="fade-up">
+                <div class="stat-number" data-count="40">0</div>
+                <div class="stat-label">JUGADORES REGISTRADOS</div>
+            </div>
+            <div class="stat-item" data-aos="fade-up" data-aos-delay="100">
+                <div class="stat-number" data-count="10">0</div>
+                <div class="stat-label">ONLINE AHORA</div>
+            </div>
+            <div class="stat-item" data-aos="fade-up" data-aos-delay="200">
+                <div class="stat-number" data-count="56">0</div>
+                <div class="stat-label">EVENTOS COMPLETADOS</div>
+            </div>
+            <div class="stat-item" data-aos="fade-up" data-aos-delay="300">
+                <div class="stat-number" data-count="24">0</div>
+                <div class="stat-label">DÍAS ACTIVO</div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Staff Team -->
+    <section id="staff" class="section staff-section">
+        <div class="section-header" data-aos="fade-up">
+            <h2 class="section-title glitch" data-text="EQUIPO PHOENIX">
+                <span>EQUIPO</span> PHOENIX
+            </h2>
+            <p class="section-subtitle">Conoce al equipo que mantiene el servidor en llamas</p>
+        </div>
+        
+        <div class="staff-grid">
+            <!-- Owner -->
+            <div class="staff-card" data-aos="flip-left">
+                <div class="staff-image">
+                    <img src="https://mc-heads.net/avatar/pipeprogamer89/200" alt="Owner" class="skin-render">
+                    <div class="staff-glow owner"></div>
+                </div>
+                <div class="staff-info">
+                    <h3 class="staff-name">pipeprogamer89</h3>
+                    <span class="staff-role owner-role">FUNDADOR</span>
+                    <p class="staff-desc">Creador del servidor y desarrollador principal. Más de 5 años de experiencia en servidores de Minecraft.</p>
+                    <div class="staff-social">
+                        <span class="online-status active">EN LÍNEA</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Co-Owner -->
+            <div class="staff-card" data-aos="flip-left" data-aos-delay="100">
+                <div class="staff-image">
+                    <img src="https://mc-heads.net/avatar/Justicia000/200" alt="Co-Owner" class="skin-render">
+                    <div class="staff-glow co-owner"></div>
+                </div>
+                <div class="staff-info">
+                    <h3 class="staff-name">Justicia000</h3>
+                    <span class="staff-role co-owner-role">CO-FUNDADOR</span>
+                    <p class="staff-desc">Especialista en configuraciones de plugins y eventos. Responsable de la comunidad y soporte.</p>
+                    <div class="staff-social">
+                        <span class="online-status active">EN LÍNEA</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Staff Cards -->
+            <div class="staff-card" data-aos="flip-left" data-aos-delay="200">
+                <div class="staff-image">
+                    <img src="https://mc-heads.net/avatar/ShadowEDF/200" alt="Staff" class="skin-render">
+                    <div class="staff-glow staff"></div>
+                </div>
+                <div class="staff-info">
+                    <h3 class="staff-name">ShadowEDF</h3>
+                    <span class="staff-role admin-role">ADMINISTRADOR</span>
+                    <p class="staff-desc">Experto en moderación y resolución de conflictos. Responsable del orden en el servidor.</p>
+                    <div class="staff-social">
+                        <span class="online-status">DESCONECTADO</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="staff-card" data-aos="flip-left" data-aos-delay="300">
+                <div class="staff-image">
+                    <img src="https://mc-heads.net/avatar/EmaelqjuegaFIFA/200" alt="Staff" class="skin-render">
+                    <div class="staff-glow staff"></div>
+                </div>
+                <div class="staff-info">
+                    <h3 class="staff-name">EmaelqjuegaFIFA</h3>
+                    <span class="staff-role admin-role">ADMINISTRADOR</span>
+                    <p class="staff-desc">Encargado de eventos y torneos. Crea experiencias únicas para la comunidad.</p>
+                    <div class="staff-social">
+                        <span class="online-status active">EN LÍNEA</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Mods -->
+            <div class="staff-card" data-aos="flip-left" data-aos-delay="400">
+                <div class="staff-image">
+                    <img src="https://mc-heads.net/avatar/rodmaster247/200" alt="Moderador" class="skin-render">
+                    <div class="staff-glow mod"></div>
+                </div>
+                <div class="staff-info">
+                    <h3 class="staff-name">rodmaster247</h3>
+                    <span class="staff-role mod-role">MODERADOR</span>
+                    <p class="staff-desc">Especialista en asistencia a nuevos jugadores y resolución de dudas técnicas.</p>
+                    <div class="staff-social">
+                        <span class="online-status">DESCONECTADO</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="staff-card" data-aos="flip-left" data-aos-delay="500">
+                <div class="staff-image">
+                    <img src="https://mc-heads.net/avatar/aneiberparra123_50071/200" alt="Moderador" class="skin-render">
+                    <div class="staff-glow mod"></div>
+                </div>
+                <div class="staff-info">
+                    <h3 class="staff-name">aneiberparra123_50071</h3>
+                    <span class="staff-role mod-role">MODERADOR</span>
+                    <p class="staff-desc">Encargada de la galería de construcciones y organización de eventos de construcción.</p>
+                    <div class="staff-social">
+                        <span class="online-status active">EN LÍNEA</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Gallery -->
+    <section id="gallery" class="section gallery-section">
+        <div class="section-header" data-aos="fade-up">
+            <h2 class="section-title glitch" data-text="MUNDO EN LLAMAS">
+                <span>MUNDO EN</span> LLAMAS
+            </h2>
+            <p class="section-subtitle">Capturas épicas de nuestra comunidad</p>
+        </div>
+        
+        <div class="gallery-container">
+            <div class="gallery-grid">
+                <div class="gallery-item" data-aos="zoom-in">
+                    <img src="https://i.ibb.co/zhpZhNkh/image.png" alt="Build épico">
+                    <div class="gallery-overlay">
+                        <h3>Ciudad Flotante</h3>
+                        <p>Construcción comunitaria épica</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-aos="zoom-in" data-aos-delay="100">
+                    <img src="https://i.ibb.co/Kcy22h67/image.png" alt="PvP">
+                    <div class="gallery-overlay">
+                        <h3>Arena PvP Legendaria</h3>
+                        <p>Combates épicos diarios</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-aos="zoom-in" data-aos-delay="200">
+                    <img src="https://i.ibb.co/sdLCnZwt/image.png" alt="Dimensiones">
+                    <div class="gallery-overlay">
+                        <h3>Dimensión nueva</h3>
+                        <p>Explora territorios peligrosos</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-aos="zoom-in" data-aos-delay="300">
+                    <img src="https://i.ibb.co/20smPJJH/image.png" alt="Eventos">
+                    <div class="gallery-overlay">
+                        <h3>Evento Masivo</h3>
+                        <p>+10 jugadores participando</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="gallery-controls">
+                <button class="gallery-btn prev-btn"><i class="fas fa-chevron-left"></i></button>
+                <button class="gallery-btn next-btn"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Discord Section -->
+    <section id="discord" class="discord-section">
+        <div class="discord-overlay"></div>
+        <div class="discord-content" data-aos="fade-up">
+            <h2 class="discord-title glitch" data-text="¿LISTO PARA RENACER?">
+                ¿LISTO PARA <span>RENACER</span>?
+            </h2>
+            <p class="discord-subtitle">Únete a nuestra comunidad activa de más de 500 miembros</p>
+            
+            <div class="discord-stats">
+                <div class="discord-stat">
+                    <div class="stat-icon"><i class="fas fa-users"></i></div>
+                    <div class="stat-value">40+</div>
+                    <div class="stat-label">MIEMBROS</div>
+                </div>
+                <div class="discord-stat">
+                    <div class="stat-icon"><i class="fas fa-comments"></i></div>
+                    <div class="stat-value">24/7</div>
+                    <div class="stat-label">CHAT ACTIVO</div>
+                </div>
+                <div class="discord-stat">
+                    <div class="stat-icon"><i class="fas fa-headset"></i></div>
+                    <div class="stat-value">Soporte</div>
+                    <div class="stat-label">INMEDIATO</div>
+                </div>
+            </div>
+            
+            <a href="https://discord.gg/uuAysGU3SE" target="_blank" class="discord-join-btn">
+                <i class="fab fa-discord"></i> ¡ÚNETE AL DISCORD!
+                <span class="btn-glow"></span>
+            </a>
+            
+            <div class="discord-widget-container">
+                <div class="discord-widget">
+                    <h3><i class="fab fa-discord"></i> ACTIVIDAD RECIENTE</h3>
+                    <div class="discord-messages">
+                        <div class="message">
+                            <div class="message-avatar">
+                                <img src="https://mc-heads.net/avatar/pipeprogamer89/40" alt="User">
+                            </div>
+                            <div class="message-content">
+                                <div class="message-author">pipeprogamer89</div>
+                                <div class="message-text">¡Nuevo evento este sábado! Torneo PvP con premios épicos 🏆</div>
+                            </div>
+                        </div>
+                        <div class="message">
+                            <div class="message-avatar">
+                                <img src="https://mc-heads.net/avatar/Justicia000/40" alt="User">
+                            </div>
+                            <div class="message-content">
+                                <div class="message-author">Justicia000</div>
+                                <div class="message-text">Se ha añadido nueva dungeon en el Nether. ¿Serás el primero en completarla?</div>
+                            </div>
+                        </div>
+                        <div class="message">
+                            <div class="message-avatar">
+                                <img src="https://mc-heads.net/avatar/ShadowEDF/40" alt="User">
+                            </div>
+                            <div class="message-content">
+                                <div class="message-author">ShadowEDF</div>
+                                <div class="message-text">Recordatorio: Mantengan el respeto en el chat. ¡Disfruten del servidor!</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Video Modal -->
+    <div class="video-modal" id="videoModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="video-container">
+                <iframe id="trailerVideo" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="image.png" alt="Logo">
+                <h3>PHOENIX UPRISING</h3>
+                <p>Survival Extremo</p>
+            </div>
+            
+            <div class="footer-links">
+                <div class="footer-column">
+                    <h4>ENLACES RÁPIDOS</h4>
+                    <a href="#home">Inicio</a>
+                    <a href="#features">Características</a>
+                    <a href="#staff">Staff</a>
+                    <a href="#gallery">Galería</a>
+                </div>
+                <div class="footer-column">
+                    <h4>SERVIDOR</h4>
+                    <a href="#rules">Reglas</a>
+                    <a href="#vote">Votar</a>
+                    <a href="#shop">Tienda</a>
+                    <a href="#status">Estado</a>
+                </div>
+                <div class="footer-column">
+                    <h4>COMUNIDAD</h4>
+                    <a href="https://discord.gg/uuAysGU3SE" target="_blank">Discord</a>
+                    <a href="#">YouTube</a>
+                    <a href="#">TikTok</a>
+                    <a href="#">Twitter</a>
+                </div>
+            </div>
+            
+            <div class="footer-ip">
+                <h4>CONÉCTATE AHORA</h4>
+                <div class="ip-display">dr01.dragonhosting.lat:19853</div>
+                <button class="copy-btn footer-copy-btn" data-ip="dr01.dragonhosting.lat:19853">
+                    <i class="fas fa-copy"></i> Copiar IP
+                </button>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>Desarrollado con <span class="heart">❤️</span> por Pipe para MuertFao Phoenix Uprising © 2023</p>
+            <p class="disclaimer">Minecraft es una marca registrada de Mojang Studios. Este servidor no está afiliado con Mojang.</p>
+        </div>
+        
+        <!-- Back to Top -->
+        <button class="back-to-top">
+            <i class="fas fa-chevron-up"></i>
+        </button>
+    </footer>
+    
+    <!-- Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <!-- Main Script -->
+    <script src="js/script.js"></script>
+</body>
+</html>
