@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         {
             position: 4,
-            username: "pipeprogamer89,
+            username: "pipeprogamer89",
             displayName: "pipeprogamer89",
             points: 4450,
             kills: 53,
