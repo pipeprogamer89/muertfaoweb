@@ -4,12 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tablas de Clasificación | LegacyCraft MC</title>
-    <meta name="description" content="Consulta los líderes del servidor: mejores niveles de McMMO, jugadores más ricos y los que más tiempo han dedicado. ¡Domina LegacyCraft!">
+    <meta name="description" content="Top 10 de jugadores: tiempo de juego, K/D, distancia recorrida y puntuación global en LegacyCraft MC.">
     <link rel="icon" href="https://i.ibb.co/HTCnjkqh/image.png" type="image/png">
     <style>
         :root {
             --bg-deep: #06060d;
-            --bg-surface: #0d0d1a;
             --glass-bg: rgba(255, 255, 255, 0.03);
             --glass-border: rgba(255, 255, 255, 0.08);
             --emerald: #50C878;
@@ -40,7 +39,6 @@
             min-height: 100vh;
             position: relative;
         }
-        /* ORB PARALLAX */
         .liquid-glass-orb {
             position: fixed; top:-20%; left:-10%; width:55vw; height:55vw; max-width:900px; max-height:900px;
             background: radial-gradient(circle at 30% 40%, rgba(80,200,120,0.1) 0%, rgba(167,139,250,0.05) 40%, transparent 70%);
@@ -52,12 +50,10 @@
             background: radial-gradient(circle at 60% 60%, rgba(226,168,71,0.08) 0%, rgba(80,200,120,0.04) 50%, transparent 75%);
             filter:blur(100px); opacity:0.6;
         }
-        /* CANVAS PARTÍCULAS */
         #particlesCanvas { position:fixed; top:0; left:0; width:100%; height:100%; z-index:0; pointer-events:none; }
-        /* CONTENIDO */
-        #mainContent { position:relative; z-index:1; opacity:0; transform:translateY(10px); transition: opacity 0.7s ease 0.15s, transform 0.7s ease 0.15s; }
+        #mainContent { position:relative; z-index:1; opacity:0; transform:translateY(10px); transition: opacity 0.7s ease 0.1s, transform 0.7s ease 0.1s; }
         #mainContent.visible { opacity:1; transform:translateY(0); }
-        /* NAVBAR */
+
         .navbar {
             position:fixed; top:16px; left:50%; transform:translateX(-50%); z-index:1000;
             width:calc(100% - 32px); max-width:1100px; background:rgba(13,13,26,0.65);
@@ -95,7 +91,6 @@
         .hamburger.active span:nth-child(2) { opacity:0; }
         .hamburger.active span:nth-child(3) { transform:rotate(-45deg) translate(5px,-5px); }
 
-        /* SECTIONS */
         .section { position:relative; z-index:1; padding:100px 24px; max-width:1100px; margin:0 auto; }
         .section-label {
             display:inline-block; font-size:0.8rem; text-transform:uppercase; letter-spacing:0.12em;
@@ -127,89 +122,104 @@
         }
         @keyframes chromeShift { 0%,100%{ background-position:0% 50%; } 50%{ background-position:100% 50%; } }
 
-        /* LEADERBOARD CARDS */
+        /* TOP GLOBAL DESTACADO */
+        .global-top-card {
+            background: var(--glass-bg); border:1px solid var(--glass-border); border-radius:var(--radius-lg);
+            padding:32px 28px; backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
+            box-shadow:var(--shadow-card), 0 0 50px rgba(226,168,71,0.2); margin-bottom:40px;
+            border-top:2px solid rgba(226,168,71,0.4); position:relative; overflow:hidden;
+        }
+        .global-top-card h3 {
+            font-family:var(--font-display); font-weight:800; font-size:2rem; margin-bottom:24px;
+            display:flex; align-items:center; gap:12px;
+        }
+        .global-list { display:flex; flex-direction:column; gap:16px; }
+        .global-item {
+            display:flex; align-items:center; gap:18px; background:rgba(0,0,0,0.2);
+            border-radius:var(--radius-md); padding:16px 20px; border:1px solid rgba(255,255,255,0.04);
+            transition:var(--transition-smooth); flex-wrap:wrap;
+        }
+        .global-item:hover { border-color:rgba(255,255,255,0.15); background:rgba(255,255,255,0.03); transform:translateX(4px); }
+        .global-rank {
+            font-size:1.5rem; font-weight:800; width:40px; text-align:center;
+            color:var(--text-muted); flex-shrink:0;
+        }
+        /* Efecto glow para top 3 */
+        .global-rank.top1 { color:#e2a847; text-shadow:0 0 20px rgba(226,168,71,0.8), 0 0 40px rgba(226,168,71,0.4); }
+        .global-rank.top2 { color:#c0c0c0; text-shadow:0 0 16px rgba(192,192,192,0.7), 0 0 32px rgba(192,192,192,0.3); }
+        .global-rank.top3 { color:#cd7f32; text-shadow:0 0 14px rgba(205,127,50,0.7), 0 0 28px rgba(205,127,50,0.3); }
+        .global-head { width:56px; height:56px; border-radius:8px; image-rendering: auto; flex-shrink:0; background:rgba(0,0,0,0.3); }
+        .global-info { flex:1; min-width:180px; }
+        .global-name { font-weight:700; font-size:1.1rem; letter-spacing:-0.01em; }
+        .global-score {
+            font-weight:800; font-size:1.4rem; background:linear-gradient(135deg, #fcd68a, #e2a847);
+            -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+        }
+        .global-stats { color:var(--text-secondary); font-size:0.8rem; margin-top:4px; display:flex; flex-wrap:wrap; gap:8px; }
+        .global-stats span { background:rgba(255,255,255,0.05); padding:2px 8px; border-radius:20px; white-space:nowrap; }
+
+        /* OTRAS TABLAS */
+        .leaderboard-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap:24px; margin-top:20px; }
         .leaderboard-card {
             background:var(--glass-bg); border:1px solid var(--glass-border); border-radius:var(--radius-lg);
-            padding:30px 28px; backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
+            padding:24px 20px; backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
             box-shadow:var(--shadow-card); transition:var(--transition-smooth);
-            margin-bottom:30px; position:relative; overflow:hidden;
         }
-        .leaderboard-card:hover {
-            border-color:rgba(255,255,255,0.2); box-shadow:0 20px 55px rgba(0,0,0,0.7), 0 0 40px rgba(80,200,120,0.08);
+        .leaderboard-card:hover { border-color:rgba(255,255,255,0.2); box-shadow:0 20px 55px rgba(0,0,0,0.7); }
+        .leaderboard-card h4 {
+            font-family:var(--font-display); font-weight:700; font-size:1.2rem; margin-bottom:12px;
+            display:flex; align-items:center; gap:8px;
         }
-        .leaderboard-card h3 {
-            font-family:var(--font-display); font-weight:700; font-size:1.5rem; margin-bottom:6px;
-            display:flex; align-items:center; gap:10px;
-        }
-        .leaderboard-card .badge-icon { font-size:1.8rem; }
-        .leaderboard-card .subtitle { color:var(--text-secondary); font-size:0.9rem; margin-bottom:20px; }
-
-        /* TABLA */
-        .table-wrapper { overflow-x:auto; margin-top:10px; border-radius:var(--radius-sm); }
-        table {
-            width:100%; border-collapse:collapse; text-align:left;
-            background:rgba(0,0,0,0.2); border-radius:var(--radius-sm); overflow:hidden;
-        }
+        .table-wrapper { overflow-x:auto; border-radius:var(--radius-sm); }
+        table { width:100%; border-collapse:collapse; text-align:left; background:rgba(0,0,0,0.2); border-radius:var(--radius-sm); }
         th {
-            font-size:0.75rem; text-transform:uppercase; letter-spacing:0.08em; color:var(--text-muted);
-            padding:14px 18px; background:rgba(255,255,255,0.03); border-bottom:1px solid var(--glass-border);
-            font-weight:600;
+            font-size:0.7rem; text-transform:uppercase; letter-spacing:0.06em; color:var(--text-muted);
+            padding:10px 12px; background:rgba(255,255,255,0.03); border-bottom:1px solid var(--glass-border); font-weight:600;
         }
-        td {
-            padding:14px 18px; border-bottom:1px solid rgba(255,255,255,0.04);
-            font-size:0.95rem; color:var(--text-primary); transition:background 0.2s;
-        }
+        td { padding:10px 12px; border-bottom:1px solid rgba(255,255,255,0.04); font-size:0.9rem; transition:background 0.2s; }
         tr:last-child td { border-bottom:none; }
         tr:hover td { background:rgba(255,255,255,0.03); }
-        .rank-col { width:60px; text-align:center; font-weight:700; }
-        .player-col { font-weight:600; }
-        .value-col { font-weight:700; }
-        .gold-highlight { color:#e2a847; }
-        .silver-highlight { color:#c0c0c0; }
-        .bronze-highlight { color:#cd7f32; }
-        .empty-row td { color:var(--text-muted); font-style:italic; text-align:center; }
+        .rank-col { width:36px; text-align:center; font-weight:700; }
+        .player-col { display:flex; align-items:center; gap:8px; font-weight:600; }
+        .player-col img { width:24px; height:24px; border-radius:4px; background:rgba(0,0,0,0.3); }
+        .value-col { font-weight:700; text-align:right; }
 
-        /* ANUNCIO APERTURA */
-        .launch-notice {
-            background:rgba(80,200,120,0.08); border:1px solid rgba(80,200,120,0.2); border-radius:var(--radius-lg);
-            padding:24px 28px; margin-bottom:30px; text-align:center; backdrop-filter:blur(10px);
-        }
-        .launch-notice p { color:var(--text-secondary); margin-bottom:0; }
-        .launch-notice strong { color:var(--emerald); }
+        /* Colores y glow para los 3 primeros puestos en las tablas */
+        .gold-highlight { color:#e2a847; text-shadow:0 0 10px rgba(226,168,71,0.5); }
+        .silver-highlight { color:#c0c0c0; text-shadow:0 0 8px rgba(192,192,192,0.4); }
+        .bronze-highlight { color:#cd7f32; text-shadow:0 0 8px rgba(205,127,50,0.4); }
+        /* Filas completas con glow sutil */
+        tr.gold-row td { background:rgba(226,168,71,0.06); box-shadow: inset 0 0 15px rgba(226,168,71,0.1); }
+        tr.silver-row td { background:rgba(192,192,192,0.04); box-shadow: inset 0 0 12px rgba(192,192,192,0.08); }
+        tr.bronze-row td { background:rgba(205,127,50,0.04); box-shadow: inset 0 0 12px rgba(205,127,50,0.08); }
 
-        /* REVEAL */
+        /* Animación de revelado más rápida */
         .reveal {
-            opacity:0; transform:translateY(40px); filter:blur(8px);
-            transition: opacity 0.8s cubic-bezier(0.25,0.46,0.45,0.94), transform 0.8s cubic-bezier(0.25,0.46,0.45,0.94), filter 0.8s ease;
+            opacity:0; transform:translateY(30px); filter:blur(4px);
+            transition: opacity 0.6s cubic-bezier(0.25,0.46,0.45,0.94), transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94), filter 0.6s ease;
             will-change:transform, opacity, filter;
         }
         .reveal.revealed { opacity:1; transform:translateY(0); filter:blur(0); }
-        .reveal-delay-1 { transition-delay:0.1s; }
-        .reveal-delay-2 { transition-delay:0.2s; }
-        .reveal-delay-3 { transition-delay:0.3s; }
+        .reveal-delay-1 { transition-delay:0.1s; } .reveal-delay-2 { transition-delay:0.2s; } .reveal-delay-3 { transition-delay:0.3s; }
 
-        /* FOOTER */
         .footer { text-align:center; padding:40px 24px; border-top:1px solid rgba(255,255,255,0.05); color:var(--text-muted); font-size:0.85rem; }
-        .footer a { color:var(--emerald); text-decoration:none; }
-        .footer a:hover { text-decoration:underline; }
+        .footer a { color:var(--emerald); text-decoration:none; } .footer a:hover { text-decoration:underline; }
 
-        /* BLOBS */
-        .blob { position:absolute; border-radius:50%; filter:blur(80px); opacity:0.08; pointer-events:none; z-index:0; will-change:transform; }
+        .blob { position:absolute; border-radius:50%; filter:blur(80px); opacity:0.08; pointer-events:none; z-index:0; }
         .blob-1 { width:450px; height:450px; background:#50C878; top:-100px; right:-100px; }
         .blob-2 { width:350px; height:350px; background:#a78bfa; bottom:-80px; left:-80px; }
 
-        /* MOBILE */
         @media (max-width:768px) {
             .navbar { padding:10px 16px; border-radius:var(--radius-lg); }
-            .nav-logo img { height:28px; }
-            .nav-logo span { font-size:1rem; }
+            .nav-logo img { height:28px; } .nav-logo span { font-size:1rem; }
             .nav-links { position:fixed; top:0; right:-100%; width:75%; max-width:320px; height:100vh; background:rgba(13,13,26,0.95); backdrop-filter:blur(30px); flex-direction:column; padding:100px 30px 40px; gap:6px; transition:right 0.4s; border-left:1px solid var(--glass-border); z-index:999; }
             .nav-links.active { right:0; }
             .nav-links a { width:100%; text-align:left; padding:14px 18px; font-size:1rem; border-radius:var(--radius-sm); }
             .hamburger { display:flex; }
             .section { padding:70px 16px; }
-            .leaderboard-card { padding:20px 18px; }
-            th, td { padding:10px 12px; font-size:0.85rem; }
+            .leaderboard-grid { grid-template-columns:1fr; }
+            .global-item { flex-direction:column; align-items:flex-start; }
+            .global-head { width:48px; height:48px; }
         }
         @media (max-width:480px) {
             .navbar { top:8px; width:calc(100% - 16px); border-radius:var(--radius-md); padding:8px 12px; }
@@ -247,53 +257,22 @@
         <section class="section" style="padding-top:140px;">
             <span class="section-label reveal">🏆 Tablas de Clasificación</span>
             <h2 class="section-title reveal reveal-delay-1"><span class="gold-text">Domina</span> el servidor</h2>
-            <p class="section-subtitle reveal reveal-delay-2">Conoce a los jugadores más destacados de LegacyCraft MC. ¿Tienes lo necesario para aparecer aquí?</p>
+            <p class="section-subtitle reveal reveal-delay-2">Conoce a los jugadores más destacados de LegacyCraft MC. Datos actualizados al cierre de la primera temporada.</p>
 
-            <!-- Aviso de lanzamiento -->
-            <div class="launch-notice reveal reveal-delay-1">
-                <p>🚀 <strong>El servidor abre en 3 días.</strong> Los líderes aparecerán después del lanzamiento. ¡Tú podrías estar en la cima!</p>
+            <!-- TOP GLOBAL -->
+            <div class="global-top-card reveal reveal-delay-2">
+                <h3><span>🌟</span> <span class="gold-text">TOP 10 GLOBAL</span></h3>
+                <div class="global-list" id="globalList"></div>
             </div>
 
-            <!-- McMMO -->
-            <div class="leaderboard-card reveal reveal-delay-2">
-                <h3><span class="badge-icon">⚔️</span> <span class="gold-text">Top McMMO</span></h3>
-                <p class="subtitle">Jugadores con mayor nivel total de habilidades McMMO.</p>
-                <div class="table-wrapper">
-                    <table>
-                        <thead> <tr><th class="rank-col">#</th><th>Jugador</th><th class="value-col">Nivel Total</th></tr> </thead>
-                        <tbody id="mcmmo-table-body">
-                            <tr class="empty-row"><td colspan="3" style="text-align:center;">🏅 Próximamente: los mejores jugadores aparecerán aquí.</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            <!-- Economía -->
-            <div class="leaderboard-card reveal reveal-delay-3">
-                <h3><span class="badge-icon">💰</span> <span class="emerald-text">Más Ricos</span></h3>
-                <p class="subtitle">Fortunas acumuladas en la economía del servidor.</p>
-                <div class="table-wrapper">
-                    <table>
-                        <thead> <tr><th class="rank-col">#</th><th>Jugador</th><th class="value-col">Dinero</th></tr> </thead>
-                        <tbody id="economy-table-body">
-                            <tr class="empty-row"><td colspan="3" style="text-align:center;">💸 Aún no hay millonarios... ¿serás el primero?</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            <!-- Tiempo de juego -->
-            <div class="leaderboard-card reveal reveal-delay-4">
-                <h3><span class="badge-icon">⏳</span> <span class="chrome-text">Más Horas</span></h3>
-                <p class="subtitle">Jugadores con mayor tiempo total conectado.</p>
-                <div class="table-wrapper">
-                    <table>
-                        <thead> <tr><th class="rank-col">#</th><th>Jugador</th><th class="value-col">Horas</th></tr> </thead>
-                        <tbody id="playtime-table-body">
-                            <tr class="empty-row"><td colspan="3" style="text-align:center;">🕒 El reloj empezará a contar desde el día de apertura.</td></tr>
-                        </tbody>
-                    </table>
-                </div>
+            <!-- OTRAS CATEGORÍAS -->
+            <div class="leaderboard-grid reveal reveal-delay-3">
+                <div class="leaderboard-card"><h4>🕒 Tiempo de Juego</h4><div class="table-wrapper" id="table-playtime"></div></div>
+                <div class="leaderboard-card"><h4>🚶 Distancia Caminada</h4><div class="table-wrapper" id="table-distance"></div></div>
+                <div class="leaderboard-card"><h4>⚔️ Kills a Jugadores</h4><div class="table-wrapper" id="table-pvp"></div></div>
+                <div class="leaderboard-card"><h4>🧟 Kills a Criaturas</h4><div class="table-wrapper" id="table-pve"></div></div>
+                <div class="leaderboard-card"><h4>💀 Menos Muertes</h4><div class="table-wrapper" id="table-deaths"></div></div>
+                <div class="leaderboard-card"><h4>💥 Daño Infligido</h4><div class="table-wrapper" id="table-damage"></div></div>
             </div>
         </section>
 
@@ -305,11 +284,22 @@
 
     <script>
         (function() {
-            // Mostrar contenido tras carga simulada
             const main = document.getElementById('mainContent');
-            window.addEventListener('DOMContentLoaded', () => { setTimeout(() => main.classList.add('visible'), 50); });
+            window.addEventListener('DOMContentLoaded', () => {
+                main.classList.add('visible');
+                // Inicializar las tablas después de que el DOM esté listo
+                setTimeout(() => {
+                    buildGlobal();
+                    buildTable('table-playtime', playtimeData, 'Horas');
+                    buildTable('table-distance', distanceData, 'Km');
+                    buildTable('table-pvp', pvpData, 'Kills');
+                    buildTable('table-pve', pveData, 'Kills');
+                    buildTable('table-deaths', deathsData, 'Muertes');
+                    buildTable('table-damage', damageData, 'Daño');
+                }, 50);
+            });
 
-            // Canvas de partículas
+            // Canvas partículas
             const canvas = document.getElementById('particlesCanvas'), ctx = canvas.getContext('2d');
             let particles = [], mouseX=-1000, mouseY=-1000;
             const isMobile = window.innerWidth < 768;
@@ -355,7 +345,7 @@
             }
             animateParticles();
 
-            // Parallax orbes
+            // Parallax
             const orb1=document.getElementById('liquidOrb1'), orb2=document.getElementById('liquidOrb2'), blobs=document.querySelectorAll('.blob[data-parallax]');
             function updateParallax() {
                 const s=window.scrollY;
@@ -365,20 +355,112 @@
             }
             window.addEventListener('scroll', updateParallax, {passive:true}); updateParallax();
 
-            // Reveal on scroll
+            // Reveal
             const revealEls = document.querySelectorAll('.reveal');
-            const obs = new IntersectionObserver(entries => { entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('revealed'); obs.unobserve(e.target); } }); }, {threshold:0.2, rootMargin:'0px 0px -30px 0px'});
+            const obs = new IntersectionObserver(entries => { entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('revealed'); obs.unobserve(e.target); } }); }, {threshold:0.15, rootMargin:'0px 0px -30px 0px'});
             revealEls.forEach(el => obs.observe(el));
 
-            // Navbar scroll
+            // Navbar
             const navbar = document.getElementById('navbar');
             window.addEventListener('scroll', () => { if(window.scrollY>30) navbar.classList.add('scrolled'); else navbar.classList.remove('scrolled'); });
-
-            // Hamburguesa
             const hamburger = document.getElementById('hamburgerBtn'), navLinks = document.getElementById('navLinks');
             hamburger.addEventListener('click', () => { hamburger.classList.toggle('active'); navLinks.classList.toggle('active'); });
-            document.querySelectorAll('[data-nav-close]').forEach(l => l.addEventListener('click', () => { hamburger.classList.remove('active'); navLinks.classList.remove('active'); }));
             document.addEventListener('click', e => { if(!navbar.contains(e.target) && navLinks.classList.contains('active')) { hamburger.classList.remove('active'); navLinks.classList.remove('active'); } });
+
+            // ---- DATOS ----
+            const globalTop = [
+                {rank:1,name:"ArrivaldCraft",score:"96.4",time:"22.0h",dist:"64.55km",kills:"83",mobs:"340",dmg:"136303",deaths:"6"},
+                {rank:2,name:"_Epicsans5716",score:"47.97",time:"24.9h",dist:"40.88km",kills:"5",mobs:"135",dmg:"52180",deaths:"68"},
+                {rank:3,name:"franchesco24255",score:"43.69",time:"16.9h",dist:"13.74km",kills:"0",mobs:"260",dmg:"79783",deaths:"33"},
+                {rank:4,name:"pipeprogamer89",score:"37.72",time:"20.5h",dist:"5.18km",kills:"28",mobs:"5",dmg:"16181",deaths:"34"},
+                {rank:5,name:"ShadowEDF",score:"36.87",time:"21.7h",dist:"44.35km",kills:"7",mobs:"36",dmg:"14752",deaths:"87"},
+                {rank:6,name:"RODMASTER247",score:"34.99",time:"10.4h",dist:"26.55km",kills:"30",mobs:"42",dmg:"23781",deaths:"37"},
+                {rank:7,name:"ItzRealMe",score:"31.97",time:"12.7h",dist:"19.04km",kills:"22",mobs:"37",dmg:"20107",deaths:"43"},
+                {rank:8,name:"Maicolsz",score:"30.68",time:"9.4h",dist:"13.51km",kills:"3",mobs:"126",dmg:"37995",deaths:"10"},
+                {rank:9,name:"xX_JustPipe_Xx",score:"25.23",time:"12.6h",dist:"8.53km",kills:"0",mobs:"20",dmg:"3966",deaths:"5"},
+                {rank:10,name:"ChumtoadCSX",score:"24.23",time:"7.1h",dist:"23.28km",kills:"3",mobs:"23",dmg:"6343",deaths:"6"}
+            ];
+
+            const playtimeData = [
+                {rank:1,name:"_Epicsans5716",val:"24.9 h"},{rank:2,name:"ArrivaldCraft",val:"22.0 h"},{rank:3,name:"ShadowEDF",val:"21.7 h"},
+                {rank:4,name:"pipeprogamer89",val:"20.5 h"},{rank:5,name:"franchesco24255",val:"16.9 h"},{rank:6,name:"ItzRealMe",val:"12.7 h"},
+                {rank:7,name:"xX_JustPipe_Xx",val:"12.6 h"},{rank:8,name:"RODMASTER247",val:"10.4 h"},{rank:9,name:"PityOsorio",val:"10.0 h"},{rank:10,name:"Maicolsz",val:"9.4 h"}
+            ];
+            const distanceData = [
+                {rank:1,name:"ArrivaldCraft",val:"64.55 km"},{rank:2,name:"ShadowEDF",val:"44.35 km"},{rank:3,name:"_Epicsans5716",val:"40.88 km"},
+                {rank:4,name:"RODMASTER247",val:"26.55 km"},{rank:5,name:"ChumtoadCSX",val:"23.28 km"},{rank:6,name:"ItzRealMe",val:"19.04 km"},
+                {rank:7,name:"franchesco24255",val:"13.74 km"},{rank:8,name:"Maicolsz",val:"13.51 km"},{rank:9,name:"Justicia000",val:"10.41 km"},{rank:10,name:"xX_JustPipe_Xx",val:"8.53 km"}
+            ];
+            const pvpData = [
+                {rank:1,name:"ArrivaldCraft",val:"83"},{rank:2,name:"RODMASTER247",val:"30"},{rank:3,name:"pipeprogamer89",val:"28"},
+                {rank:4,name:"ItzRealMe",val:"22"},{rank:5,name:"ShadowEDF",val:"7"},{rank:6,name:"_Epicsans5716",val:"5"},
+                {rank:7,name:"ChumtoadCSX",val:"3"},{rank:8,name:"Proj3ct_On3_HT1",val:"3"},{rank:9,name:"Maicolsz",val:"3"},{rank:10,name:"Knigth",val:"2"}
+            ];
+            const pveData = [
+                {rank:1,name:"ArrivaldCraft",val:"340"},{rank:2,name:"franchesco24255",val:"260"},{rank:3,name:"_Epicsans5716",val:"135"},
+                {rank:4,name:"Maicolsz",val:"126"},{rank:5,name:"Justicia000",val:"55"},{rank:6,name:"RODMASTER247",val:"42"},
+                {rank:7,name:"ItzRealMe",val:"37"},{rank:8,name:"ShadowEDF",val:"36"},{rank:9,name:"ChumtoadCSX",val:"23"},{rank:10,name:"xX_JustPipe_Xx",val:"20"}
+            ];
+            const deathsData = [
+                {rank:1,name:"Stress_confused",val:"0"},{rank:2,name:"2228ba4d-903d-39ab-a3e4-a2178c72242c",val:"0"},{rank:3,name:"ItzMaxC0_",val:"0"},
+                {rank:4,name:"Test_Edita",val:"0"},{rank:5,name:"Stress_Vitek",val:"0"},{rank:6,name:"292353f5-c139-3feb-b74b-027ef12bee82",val:"0"},
+                {rank:7,name:"Test_pastelvxbez",val:"0"},{rank:8,name:"yoinko",val:"0"},{rank:9,name:"snowsongKbrook",val:"0"},{rank:10,name:"HEROBRIN",val:"0"}
+            ];
+            const damageData = [
+                {rank:1,name:"ArrivaldCraft",val:"136,303"},{rank:2,name:"franchesco24255",val:"79,783"},{rank:3,name:"_Epicsans5716",val:"52,180"},
+                {rank:4,name:"Maicolsz",val:"37,995"},{rank:5,name:"RODMASTER247",val:"23,781"},{rank:6,name:"ItzRealMe",val:"20,107"},
+                {rank:7,name:"pipeprogamer89",val:"16,181"},{rank:8,name:"Justicia000",val:"16,066"},{rank:9,name:"ShadowEDF",val:"14,752"},{rank:10,name:"ChumtoadCSX",val:"6,343"}
+            ];
+
+            function headURL(name) { return `https://minotar.net/helm/${name}/64.png`; }
+            function smallHead(name) { return `https://minotar.net/helm/${name}/32.png`; }
+
+            function buildGlobal() {
+                const container = document.getElementById('globalList');
+                container.innerHTML = '';
+                globalTop.forEach(p => {
+                    const rankClass = p.rank===1?'top1':(p.rank===2?'top2':(p.rank===3?'top3':''));
+                    const div = document.createElement('div');
+                    div.className = 'global-item';
+                    div.innerHTML = `
+                        <div class="global-rank ${rankClass}">${p.rank}</div>
+                        <img class="global-head" src="${headURL(p.name)}" alt="${p.name}" onerror="this.src='https://minotar.net/helm/Steve/64.png'">
+                        <div class="global-info">
+                            <div class="global-name">${p.name}</div>
+                            <div class="global-score">${p.score}/100</div>
+                            <div class="global-stats">
+                                <span>🕒 ${p.time}</span><span>🚶 ${p.dist}</span><span>⚔️ ${p.kills}</span><span>🧟 ${p.mobs}</span><span>💥 ${p.dmg}</span><span>💀 ${p.deaths}</span>
+                            </div>
+                        </div>
+                    `;
+                    container.appendChild(div);
+                });
+            }
+
+            function buildTable(containerId, data) {
+                const container = document.getElementById(containerId);
+                if (!container) return;
+                const table = document.createElement('table');
+                table.innerHTML = `<thead><tr><th>#</th><th>Jugador</th><th></th></tr></thead><tbody></tbody>`;
+                const tbody = table.querySelector('tbody');
+                data.forEach(p => {
+                    const tr = document.createElement('tr');
+                    const rankClass = p.rank===1?'gold-highlight':(p.rank===2?'silver-highlight':(p.rank===3?'bronze-highlight':''));
+                    let rowClass = '';
+                    if (p.rank === 1) rowClass = 'gold-row';
+                    else if (p.rank === 2) rowClass = 'silver-row';
+                    else if (p.rank === 3) rowClass = 'bronze-row';
+                    tr.className = rowClass;
+                    tr.innerHTML = `
+                        <td class="rank-col ${rankClass}">${p.rank}</td>
+                        <td class="player-col"><img src="${smallHead(p.name)}" alt="${p.name}" onerror="this.src='https://minotar.net/helm/Steve/32.png'"> ${p.name}</td>
+                        <td class="value-col ${rankClass}">${p.val}</td>
+                    `;
+                    tbody.appendChild(tr);
+                });
+                container.innerHTML = '';
+                container.appendChild(table);
+            }
         })();
     </script>
 </body>
