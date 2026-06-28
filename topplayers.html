@@ -122,7 +122,6 @@
         }
         @keyframes chromeShift { 0%,100%{ background-position:0% 50%; } 50%{ background-position:100% 50%; } }
 
-        /* TOP GLOBAL DESTACADO */
         .global-top-card {
             background: var(--glass-bg); border:1px solid var(--glass-border); border-radius:var(--radius-lg);
             padding:32px 28px; backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
@@ -144,7 +143,6 @@
             font-size:1.5rem; font-weight:800; width:40px; text-align:center;
             color:var(--text-muted); flex-shrink:0;
         }
-        /* Efecto glow para top 3 */
         .global-rank.top1 { color:#e2a847; text-shadow:0 0 20px rgba(226,168,71,0.8), 0 0 40px rgba(226,168,71,0.4); }
         .global-rank.top2 { color:#c0c0c0; text-shadow:0 0 16px rgba(192,192,192,0.7), 0 0 32px rgba(192,192,192,0.3); }
         .global-rank.top3 { color:#cd7f32; text-shadow:0 0 14px rgba(205,127,50,0.7), 0 0 28px rgba(205,127,50,0.3); }
@@ -158,7 +156,6 @@
         .global-stats { color:var(--text-secondary); font-size:0.8rem; margin-top:4px; display:flex; flex-wrap:wrap; gap:8px; }
         .global-stats span { background:rgba(255,255,255,0.05); padding:2px 8px; border-radius:20px; white-space:nowrap; }
 
-        /* OTRAS TABLAS */
         .leaderboard-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap:24px; margin-top:20px; }
         .leaderboard-card {
             background:var(--glass-bg); border:1px solid var(--glass-border); border-radius:var(--radius-lg);
@@ -184,16 +181,13 @@
         .player-col img { width:24px; height:24px; border-radius:4px; background:rgba(0,0,0,0.3); }
         .value-col { font-weight:700; text-align:right; }
 
-        /* Colores y glow para los 3 primeros puestos en las tablas */
         .gold-highlight { color:#e2a847; text-shadow:0 0 10px rgba(226,168,71,0.5); }
         .silver-highlight { color:#c0c0c0; text-shadow:0 0 8px rgba(192,192,192,0.4); }
         .bronze-highlight { color:#cd7f32; text-shadow:0 0 8px rgba(205,127,50,0.4); }
-        /* Filas completas con glow sutil */
         tr.gold-row td { background:rgba(226,168,71,0.06); box-shadow: inset 0 0 15px rgba(226,168,71,0.1); }
         tr.silver-row td { background:rgba(192,192,192,0.04); box-shadow: inset 0 0 12px rgba(192,192,192,0.08); }
         tr.bronze-row td { background:rgba(205,127,50,0.04); box-shadow: inset 0 0 12px rgba(205,127,50,0.08); }
 
-        /* Animación de revelado más rápida */
         .reveal {
             opacity:0; transform:translateY(30px); filter:blur(4px);
             transition: opacity 0.6s cubic-bezier(0.25,0.46,0.45,0.94), transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94), filter 0.6s ease;
@@ -257,15 +251,13 @@
         <section class="section" style="padding-top:140px;">
             <span class="section-label reveal">🏆 Tablas de Clasificación</span>
             <h2 class="section-title reveal reveal-delay-1"><span class="gold-text">Domina</span> el servidor</h2>
-            <p class="section-subtitle reveal reveal-delay-2">Conoce a los jugadores más destacados de LegacyCraft MC. Datos actualizados al cierre de la primera temporada.</p>
+            <p class="section-subtitle reveal reveal-delay-2">Conoce a los jugadores más destacados de LegacyCraft MC. Datos actualizados al 27/06/2026.</p>
 
-            <!-- TOP GLOBAL -->
             <div class="global-top-card reveal reveal-delay-2">
                 <h3><span>🌟</span> <span class="gold-text">TOP 10 GLOBAL</span></h3>
                 <div class="global-list" id="globalList"></div>
             </div>
 
-            <!-- OTRAS CATEGORÍAS -->
             <div class="leaderboard-grid reveal reveal-delay-3">
                 <div class="leaderboard-card"><h4>🕒 Tiempo de Juego</h4><div class="table-wrapper" id="table-playtime"></div></div>
                 <div class="leaderboard-card"><h4>🚶 Distancia Caminada</h4><div class="table-wrapper" id="table-distance"></div></div>
@@ -287,7 +279,6 @@
             const main = document.getElementById('mainContent');
             window.addEventListener('DOMContentLoaded', () => {
                 main.classList.add('visible');
-                // Inicializar las tablas después de que el DOM esté listo
                 setTimeout(() => {
                     buildGlobal();
                     buildTable('table-playtime', playtimeData, 'Horas');
@@ -299,7 +290,6 @@
                 }, 50);
             });
 
-            // Canvas partículas
             const canvas = document.getElementById('particlesCanvas'), ctx = canvas.getContext('2d');
             let particles = [], mouseX=-1000, mouseY=-1000;
             const isMobile = window.innerWidth < 768;
@@ -345,7 +335,6 @@
             }
             animateParticles();
 
-            // Parallax
             const orb1=document.getElementById('liquidOrb1'), orb2=document.getElementById('liquidOrb2'), blobs=document.querySelectorAll('.blob[data-parallax]');
             function updateParallax() {
                 const s=window.scrollY;
@@ -355,61 +344,59 @@
             }
             window.addEventListener('scroll', updateParallax, {passive:true}); updateParallax();
 
-            // Reveal
             const revealEls = document.querySelectorAll('.reveal');
             const obs = new IntersectionObserver(entries => { entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('revealed'); obs.unobserve(e.target); } }); }, {threshold:0.15, rootMargin:'0px 0px -30px 0px'});
             revealEls.forEach(el => obs.observe(el));
 
-            // Navbar
             const navbar = document.getElementById('navbar');
             window.addEventListener('scroll', () => { if(window.scrollY>30) navbar.classList.add('scrolled'); else navbar.classList.remove('scrolled'); });
             const hamburger = document.getElementById('hamburgerBtn'), navLinks = document.getElementById('navLinks');
             hamburger.addEventListener('click', () => { hamburger.classList.toggle('active'); navLinks.classList.toggle('active'); });
             document.addEventListener('click', e => { if(!navbar.contains(e.target) && navLinks.classList.contains('active')) { hamburger.classList.remove('active'); navLinks.classList.remove('active'); } });
 
-            // ---- DATOS ----
+            // ---- DATOS ACTUALIZADOS 27/06/2026 ----
             const globalTop = [
-                {rank:1,name:"ArrivaldCraft",score:"96.4",time:"22.0h",dist:"64.55km",kills:"83",mobs:"340",dmg:"136303",deaths:"6"},
-                {rank:2,name:"_Epicsans5716",score:"47.97",time:"24.9h",dist:"40.88km",kills:"5",mobs:"135",dmg:"52180",deaths:"68"},
-                {rank:3,name:"franchesco24255",score:"43.69",time:"16.9h",dist:"13.74km",kills:"0",mobs:"260",dmg:"79783",deaths:"33"},
-                {rank:4,name:"pipeprogamer89",score:"37.72",time:"20.5h",dist:"5.18km",kills:"28",mobs:"5",dmg:"16181",deaths:"34"},
-                {rank:5,name:"ShadowEDF",score:"36.87",time:"21.7h",dist:"44.35km",kills:"7",mobs:"36",dmg:"14752",deaths:"87"},
-                {rank:6,name:"RODMASTER247",score:"34.99",time:"10.4h",dist:"26.55km",kills:"30",mobs:"42",dmg:"23781",deaths:"37"},
-                {rank:7,name:"ItzRealMe",score:"31.97",time:"12.7h",dist:"19.04km",kills:"22",mobs:"37",dmg:"20107",deaths:"43"},
-                {rank:8,name:"Maicolsz",score:"30.68",time:"9.4h",dist:"13.51km",kills:"3",mobs:"126",dmg:"37995",deaths:"10"},
-                {rank:9,name:"xX_JustPipe_Xx",score:"25.23",time:"12.6h",dist:"8.53km",kills:"0",mobs:"20",dmg:"3966",deaths:"5"},
-                {rank:10,name:"ChumtoadCSX",score:"24.23",time:"7.1h",dist:"23.28km",kills:"3",mobs:"23",dmg:"6343",deaths:"6"}
+                {rank:1,name:"ArrivaldCraft",score:"84.75",time:"26.2h",dist:"78.04km",kills:"83",mobs:"379",dmg:"154072",deaths:"6"},
+                {rank:2,name:"RODMASTER247",score:"57.0",time:"23.6h",dist:"56.73km",kills:"38",mobs:"365",dmg:"82260",deaths:"42"},
+                {rank:3,name:"ItzRealMe",score:"51.71",time:"27.6h",dist:"52.64km",kills:"24",mobs:"350",dmg:"123524",deaths:"83"},
+                {rank:4,name:"franchesco24255",score:"51.28",time:"28.3h",dist:"28.61km",kills:"0",mobs:"539",dmg:"179291",deaths:"60"},
+                {rank:5,name:"_Epicsans5716",score:"49.75",time:"40.2h",dist:"64.73km",kills:"5",mobs:"217",dmg:"73101",deaths:"82"},
+                {rank:6,name:"xX_JustPipe_Xx",score:"44.5",time:"31.7h",dist:"31.34km",kills:"2",mobs:"276",dmg:"90072",deaths:"40"},
+                {rank:7,name:"pipeprogamer89",score:"33.04",time:"26.3h",dist:"6.74km",kills:"28",mobs:"5",dmg:"16195",deaths:"36"},
+                {rank:8,name:"ShadowEDF",score:"26.72",time:"22.3h",dist:"46.4km",kills:"7",mobs:"36",dmg:"14757",deaths:"88"},
+                {rank:9,name:"Maicolsz",score:"23.84",time:"9.4h",dist:"13.51km",kills:"3",mobs:"126",dmg:"37995",deaths:"10"},
+                {rank:10,name:"ChumtoadCSX",score:"22.6",time:"9.2h",dist:"30.3km",kills:"3",mobs:"29",dmg:"8699",deaths:"10"}
             ];
 
             const playtimeData = [
-                {rank:1,name:"_Epicsans5716",val:"24.9 h"},{rank:2,name:"ArrivaldCraft",val:"22.0 h"},{rank:3,name:"ShadowEDF",val:"21.7 h"},
-                {rank:4,name:"pipeprogamer89",val:"20.5 h"},{rank:5,name:"franchesco24255",val:"16.9 h"},{rank:6,name:"ItzRealMe",val:"12.7 h"},
-                {rank:7,name:"xX_JustPipe_Xx",val:"12.6 h"},{rank:8,name:"RODMASTER247",val:"10.4 h"},{rank:9,name:"PityOsorio",val:"10.0 h"},{rank:10,name:"Maicolsz",val:"9.4 h"}
+                {rank:1,name:"_Epicsans5716",val:"40.2 h"},{rank:2,name:"xX_JustPipe_Xx",val:"31.7 h"},{rank:3,name:"franchesco24255",val:"28.3 h"},
+                {rank:4,name:"ItzRealMe",val:"27.6 h"},{rank:5,name:"pipeprogamer89",val:"26.3 h"},{rank:6,name:"ArrivaldCraft",val:"26.2 h"},
+                {rank:7,name:"RODMASTER247",val:"23.6 h"},{rank:8,name:"ShadowEDF",val:"22.3 h"},{rank:9,name:"PityOsorio",val:"10.0 h"},{rank:10,name:"Maicolsz",val:"9.4 h"}
             ];
             const distanceData = [
-                {rank:1,name:"ArrivaldCraft",val:"64.55 km"},{rank:2,name:"ShadowEDF",val:"44.35 km"},{rank:3,name:"_Epicsans5716",val:"40.88 km"},
-                {rank:4,name:"RODMASTER247",val:"26.55 km"},{rank:5,name:"ChumtoadCSX",val:"23.28 km"},{rank:6,name:"ItzRealMe",val:"19.04 km"},
-                {rank:7,name:"franchesco24255",val:"13.74 km"},{rank:8,name:"Maicolsz",val:"13.51 km"},{rank:9,name:"Justicia000",val:"10.41 km"},{rank:10,name:"xX_JustPipe_Xx",val:"8.53 km"}
+                {rank:1,name:"ArrivaldCraft",val:"78.04 km"},{rank:2,name:"_Epicsans5716",val:"64.73 km"},{rank:3,name:"RODMASTER247",val:"56.73 km"},
+                {rank:4,name:"ItzRealMe",val:"52.64 km"},{rank:5,name:"ShadowEDF",val:"46.40 km"},{rank:6,name:"xX_JustPipe_Xx",val:"31.34 km"},
+                {rank:7,name:"ChumtoadCSX",val:"30.30 km"},{rank:8,name:"franchesco24255",val:"28.61 km"},{rank:9,name:"l17rtx",val:"15.46 km"},{rank:10,name:"Maicolsz",val:"13.51 km"}
             ];
             const pvpData = [
-                {rank:1,name:"ArrivaldCraft",val:"83"},{rank:2,name:"RODMASTER247",val:"30"},{rank:3,name:"pipeprogamer89",val:"28"},
-                {rank:4,name:"ItzRealMe",val:"22"},{rank:5,name:"ShadowEDF",val:"7"},{rank:6,name:"_Epicsans5716",val:"5"},
-                {rank:7,name:"ChumtoadCSX",val:"3"},{rank:8,name:"Proj3ct_On3_HT1",val:"3"},{rank:9,name:"Maicolsz",val:"3"},{rank:10,name:"Knigth",val:"2"}
+                {rank:1,name:"ArrivaldCraft",val:"83"},{rank:2,name:"RODMASTER247",val:"38"},{rank:3,name:"pipeprogamer89",val:"28"},
+                {rank:4,name:"ItzRealMe",val:"24"},{rank:5,name:"ShadowEDF",val:"7"},{rank:6,name:"_Epicsans5716",val:"5"},
+                {rank:7,name:"SANTIAGO77777777",val:"4"},{rank:8,name:"Proj3ct_On3_HT1",val:"3"},{rank:9,name:"ChumtoadCSX",val:"3"},{rank:10,name:"Maicolsz",val:"3"}
             ];
             const pveData = [
-                {rank:1,name:"ArrivaldCraft",val:"340"},{rank:2,name:"franchesco24255",val:"260"},{rank:3,name:"_Epicsans5716",val:"135"},
-                {rank:4,name:"Maicolsz",val:"126"},{rank:5,name:"Justicia000",val:"55"},{rank:6,name:"RODMASTER247",val:"42"},
-                {rank:7,name:"ItzRealMe",val:"37"},{rank:8,name:"ShadowEDF",val:"36"},{rank:9,name:"ChumtoadCSX",val:"23"},{rank:10,name:"xX_JustPipe_Xx",val:"20"}
+                {rank:1,name:"franchesco24255",val:"539"},{rank:2,name:"ArrivaldCraft",val:"379"},{rank:3,name:"RODMASTER247",val:"365"},
+                {rank:4,name:"ItzRealMe",val:"350"},{rank:5,name:"xX_JustPipe_Xx",val:"276"},{rank:6,name:"_Epicsans5716",val:"217"},
+                {rank:7,name:"Maicolsz",val:"126"},{rank:8,name:"Justicia000",val:"56"},{rank:9,name:"l17rtx",val:"37"},{rank:10,name:"ShadowEDF",val:"36"}
             ];
             const deathsData = [
-                {rank:1,name:"Stress_confused",val:"0"},{rank:2,name:"2228ba4d-903d-39ab-a3e4-a2178c72242c",val:"0"},{rank:3,name:"ItzMaxC0_",val:"0"},
-                {rank:4,name:"Test_Edita",val:"0"},{rank:5,name:"Stress_Vitek",val:"0"},{rank:6,name:"292353f5-c139-3feb-b74b-027ef12bee82",val:"0"},
-                {rank:7,name:"Test_pastelvxbez",val:"0"},{rank:8,name:"yoinko",val:"0"},{rank:9,name:"snowsongKbrook",val:"0"},{rank:10,name:"HEROBRIN",val:"0"}
+                {rank:1,name:"_ElbellakO7573",val:"0"},{rank:2,name:"_Shadow_EDF",val:"0"},{rank:3,name:"_Arrivald5885",val:"0"},
+                {rank:4,name:"_DarkMaster4485",val:"0"},{rank:5,name:"_anhhao4868",val:"0"},{rank:6,name:"Test_Pingitore",val:"0"},
+                {rank:7,name:"Stress_AhreExag",val:"0"},{rank:8,name:"Test_Jan",val:"0"},{rank:9,name:"Test_RunescapeG",val:"0"},{rank:10,name:"Stress_7el",val:"0"}
             ];
             const damageData = [
-                {rank:1,name:"ArrivaldCraft",val:"136,303"},{rank:2,name:"franchesco24255",val:"79,783"},{rank:3,name:"_Epicsans5716",val:"52,180"},
-                {rank:4,name:"Maicolsz",val:"37,995"},{rank:5,name:"RODMASTER247",val:"23,781"},{rank:6,name:"ItzRealMe",val:"20,107"},
-                {rank:7,name:"pipeprogamer89",val:"16,181"},{rank:8,name:"Justicia000",val:"16,066"},{rank:9,name:"ShadowEDF",val:"14,752"},{rank:10,name:"ChumtoadCSX",val:"6,343"}
+                {rank:1,name:"franchesco24255",val:"179,291"},{rank:2,name:"ArrivaldCraft",val:"154,072"},{rank:3,name:"ItzRealMe",val:"123,524"},
+                {rank:4,name:"xX_JustPipe_Xx",val:"90,072"},{rank:5,name:"RODMASTER247",val:"82,260"},{rank:6,name:"_Epicsans5716",val:"73,101"},
+                {rank:7,name:"Maicolsz",val:"37,995"},{rank:8,name:"Justicia000",val:"16,267"},{rank:9,name:"pipeprogamer89",val:"16,195"},{rank:10,name:"ShadowEDF",val:"14,757"}
             ];
 
             function headURL(name) { return `https://minotar.net/helm/${name}/64.png`; }
@@ -417,6 +404,7 @@
 
             function buildGlobal() {
                 const container = document.getElementById('globalList');
+                if (!container) return;
                 container.innerHTML = '';
                 globalTop.forEach(p => {
                     const rankClass = p.rank===1?'top1':(p.rank===2?'top2':(p.rank===3?'top3':''));
